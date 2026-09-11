@@ -131,3 +131,20 @@ The validation produced:
 ```text
 Do SQL JOIN and pandas merge match?
 True
+
+
+
+## Validation Results
+
+The completed pipeline was tested end-to-end successfully.
+
+- 144 books were scraped and cleaned.
+- 4 book categories were collected.
+- SQLite database contains 144 book records.
+- The database contains 4 category records.
+- Ratings are stored as integers from 1 to 5.
+- Stock status is stored as a Boolean-compatible value.
+- GBP prices are converted to INR using the fixed rate of 1 GBP = 105.50 INR.
+- SQL queries were executed successfully.
+- SQL JOIN results were reproduced using `pandas.merge()`.
+- SQL JOIN and Pandas merge results were validated and matched successfully.
