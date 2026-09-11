@@ -148,3 +148,11 @@ The completed pipeline was tested end-to-end successfully.
 - SQL queries were executed successfully.
 - SQL JOIN results were reproduced using `pandas.merge()`.
 - SQL JOIN and Pandas merge results were validated and matched successfully.
+
+
+## Reproducibility
+
+The complete pipeline can be reproduced from the project root with:
+
+```powershell
+python data_pipeline/run_pipeline.py
