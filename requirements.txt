@@ -13,3 +13,4 @@ pydantic
 langgraph
 chromadb
 sentence-transformers
+jupyter
