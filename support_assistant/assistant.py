@@ -211,3 +211,54 @@ if __name__ == "__main__":
     print("Answer:", general_result["answer"])
     print("Sources:", general_result["sources"])
     print("Confidence:", general_result["confidence"])
+
+
+ # Structured prompt required for the optional real-LLM path.
+STRUCTURED_PROMPT = """
+Role:
+You are a Zepto customer support policy assistant.
+
+Context:
+Use only the retrieved Zepto policy context provided below.
+
+Task:
+Answer the user's question using the retrieved policy context.
+
+Format:
+Return a concise, direct answer and identify the source documents used.
+
+Length:
+Keep the answer short and relevant.
+
+Negative constraint:
+Do not invent, assume, or use information that is not present in the retrieved policy context.
+
+Few-shot example:
+Question: How long do I have to report a damaged or missing item after delivery?
+Context: A damaged or missing item should be reported according to the applicable Zepto policy.
+Answer: Based on the retrieved context, follow the applicable Zepto policy for reporting the damaged or missing item.
+
+Retrieved context:
+{context}
+
+User question:
+{question}
+"""
+
+
+def call_with_retry(llm_function, max_retries=3):
+    """
+    Retry an optional real-LLM call when it fails.
+    The default MOCK_LLM path does not use this function.
+    """
+    last_error = None
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            return llm_function()
+        except Exception as error:
+            last_error = error
+
+    raise RuntimeError(
+        f"Real LLM call failed after {max_retries} attempts: {last_error}"
+    )   
