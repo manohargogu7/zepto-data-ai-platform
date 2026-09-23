@@ -15,4 +15,4 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .venv/
-analytics/support_assistant/chroma_db/
+support_assistant/chroma_db/
